@@ -1,10 +1,56 @@
-/* CSS by ///ADD/// YOUR NAME */
+/* CSS by Susan Arraez */
 
 /* Imported Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wdth,wght@0,18..144,87..112,300..900;1,18..144,87..112,300..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
 
-/* ///ADD/// CSS Reset */
-
+/* CSS Reset */
+/* http://meyerweb.com/eric/tools/css/reset/
+v2.0 | 20110126
+License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
 
 /* Root Variables */
 :root {
@@ -17,6 +63,10 @@
   --font-heading: 'Merriweather', serif;
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
   --transition: all 0.5s ease;
+
+}
+html{
+  font-size: 16px;
 }
 
 /* Manual Light/Dark Mode Styles*/
@@ -38,28 +88,170 @@ body.dark-mode {
   cursor: pointer;
 }
 
-/* ///ADD/// Skip Link Styles */
+/* Skip Link Styles */
+.skip-to-content-link {
+  background: var(--watchdog-white);
+  color: var(--truth-text);
+  height: 30px;
+  left: 50%;
+  padding: 8px;
+  position: absolute;
+  transform: translateY(-100%);
+  transition: transform 0.3s;
+}
 
-/* ///ADD/// Navigation Styles */
+.skip-to-content-link:focus {
+  transform: translateY(0%);
+}
+
+/* Navigation Styles */
+
+.mobile-nav {
+  background-color: var(--blue-bulletin);
+  padding: 10px;
+}
+
+.menu-button {
+  display: inline-block;
+  background-color: var(--news-flash);
+  color: var(--watchdog-white);
+  padding: 1rem 4rem;
+  margin: 10px 0 0 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Hide the menu by default */
+.menu {
+  display: none;
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+  background-color: var(--truth-text);
+}
+
+/* Show menu when checkbox is checked */
+#menu-toggle:checked + .menu-button + .menu {
+  display: block;
+}
+
+.menu li a {
+  display: block;
+  padding: 1rem 3rem;
+  color: var(--watchdog-white);
+  text-decoration: none;
+}
+
+.menu li a:hover {
+  background-color: var(--blue-bulletin);
+}
+
 
 /* ///ADD/// Global Layout Styles */
+body {
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+header, main, footer {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
 
 /* ///ADD/// Global Text Styles */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  color: var(--blue-bulletin);
+  margin-bottom: 0.5rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  color: var(--truth-text);
+}
 
 
 /* ///ADD/// medium styles 620px */
+@media (min-width: 620px) {
+  .menu-button {
+    padding: 1rem 2rem;
+  }
+
+  .menu li a {
+    padding: 1rem 2rem;
+  }
+}
 
 
 /* ///ADD/// large styles 920px */
+@media (min-width: 920px) {
+  .mobile-nav {
+    display: none;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .menu {
+    display: flex !important;
+    gap: 2rem;
+  }
+
+  .menu li {
+    display: inline;
+  }
+
+  .menu li a {
+    padding: 0.5rem 1rem;
+  }
+}
 
 
 /* ///ADD/// x-large styles 1024px */
+@media (min-width: 1024px) {
+  header, main, footer {
+    padding: 2rem;
+  }
+}
 
 
 /* ///ADD/// Interaction Queries for color scheme light and dark and motion preference */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--truth-text);
+    color: var(--watchdog-white);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
 
 
 /* ///ADD///  Feature Query for :has() that checks if the #menu-toggle is checked */
+@supports (selector(:has(#menu-toggle:checked))) {
+  nav:has(#menu-toggle:checked) .menu {
+    display: block;
+  }
+}
+
 @supports (selector(:has(*))) {
 
 }
